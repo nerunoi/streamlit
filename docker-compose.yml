@@ -1,0 +1,19 @@
+version: '3'
+services:
+  notebook:
+    build: .
+    ports:
+      - '8080:8888'
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      - ./work:/home/jovyan/work
+    command: start-notebook.sh --NotebookApp.token=''
+
+  streamlit:
+    build: .
+    ports:
+      - '8501:8501'
+    volumes:
+      - ./work:/home/jovyan/work
+    command: streamlit run /home/jovyan/work/app.py
