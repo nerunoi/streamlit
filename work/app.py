@@ -39,25 +39,38 @@ def calc():
         value=f'{round(concentration_g, 4)} g'
     )
     
-    st.metric(
+    col1, col2, col3 = st.columns(3)
+    
+    col1.metric(
         label="溶液の濃度",
         value=f'{round(concentration_mM, 1)} mM'
     )
     
-    st.metric(
+    col2.metric(
         label="溶質の分子量",
         value=f'{round(Mw, 4)} g/mol'
     )
     
-    st.metric(
+    col3.metric(
         label="溶液の体積",
         value=f'{round(solution_mL, 0)} mL'
     )
     
+    st.write('ある濃度の溶液をつくるのに必要な溶質の質量を計算できます。')
 
-def list_dpa():
-    st.header('DPA資化リスト')
-    st.write('DPA資化性菌の一覧を表示します。')
+    
+def man_streamlit():
+    st.header('Streamlit')
+    st.write('StreamlitでWeb app.を運用する上で必要なコマンドなど')
+    
+    st.subheader('git/github')
+    st.code('git add .')
+    st.code('git commit -m "commit changes"')
+    st.code('git push origin main')
+    
+    st.subheader('Streamlit')
+    st.code('streamlit run app.py')
+    
 
     
 ##### main page #####
@@ -66,12 +79,13 @@ st.title('Lab Tools')
 
 page = st.multiselect(
      label = 'Page Select',
-     options = ['濃度計算', 'DPA資化リスト'],
+     options = ['濃度計算', 'Streamlit'],
      default = ['濃度計算'])
 
 
 if '濃度計算' in page:
     calc()
 
-if 'DPA資化リスト' in page:
-    list_dpa()
+if 'Streamlit' in page:
+    man_streamlit()
+    
